@@ -1,0 +1,46 @@
+<ClickableTextFieldRound>:
+    size_hint_y: None
+    height: text_field.height
+     
+    MDTextFieldRound:
+        id: text_field
+        hint_text: root.hint_text
+        text: root.text
+        icon_left: 'magnify'
+        padding: 20, 20, 20, 20
+            # self._lbl_icon_left.texture_size[1] + dp(15) if self.icon_left else dp(25)
+     
+    MDIconButton:
+        id: menubut
+        icon: 'arrow-down-drop-circle-outline'
+        ripple_scale: .5
+        pos_hint: {"center_y": .5}
+        pos: text_field.width -self.width +dp(8), 0
+        on_release:
+            self.icon = "arrow-down-drop-circle-outline" if self.icon == 'magnify' else 'magnify'
+            app.root.ids.screen_manager.get_screen('loja').menu.open()
+            
+        
+
+<LojaScreen>:
+    md_bg_color: [253/255, 253/255, 253/255, 1]
+    BoxLayout:
+        id: box1
+        orientation: 'vertical'
+        padding: 50, 20, 20, 20
+        
+        BoxLayout:
+            id: box
+            orientation: 'horizontal'
+            pos_hint: {"center_x": .5, "center_y":.5}
+
+            ClickableTextFieldRound:
+                id: campo_texto
+                size_hint_x: None
+                width: "500dp"
+                hint_text: "Pesquise"
+                pos_hint: {"center_x": .5, "center_y":.5}
+
+ 
+        Widget:
+            heigth: 400 

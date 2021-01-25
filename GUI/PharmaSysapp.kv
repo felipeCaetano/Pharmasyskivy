@@ -1,0 +1,115 @@
+<ContentNavigationDrawer>:
+    orientation: 'vertical'
+    padding: "8dp"
+    spacing: "8dp"
+
+    AnchorLayout:
+        anchor_x: "left"
+        size_hint_y: None
+        height: avatar.height
+
+        Image:
+            id: avatar
+            size_hint: None, None
+            size: "56dp", "56dp"
+            source: "logo.png"
+
+    MDLabel:
+        text: "Pharmasys"
+        font_style: "Button"
+        size_hint_y: None
+        height: self.texture_size[1]
+
+    MDLabel:
+        text: "Modulos:"
+        font_style: "Caption"
+        size_hint_y: None
+        height: self.texture_size[1]
+
+    ScrollView:
+
+        DrawerList:
+            id: md_list:
+
+            MDList:
+                OneLineIconListItem:
+                    on_press:
+                        root.nav_drawer.set_state("close")
+                        root.screen_manager.current = "loja"
+                    text: "Loja"
+                    IconLeftWidget:
+                        icon: 'store' 
+
+                OneLineIconListItem:
+                    on_press:
+                        root.nav_drawer.set_state("close")
+                        root.screen_manager.current = "login" 
+                    text: "Caixa"
+                    IconLeftWidget:
+                        icon: 'cash-register'
+
+                OneLineIconListItem:
+                    on_press:
+                        root.nav_drawer.set_state("close")
+                        root.screen_manager.current = "scr 1"
+                    text: "Estoque"
+                    IconLeftWidget:
+                        icon: 'dropbox'
+
+                OneLineIconListItem:
+                    on_press:
+                        root.nav_drawer.set_state("close")
+                        root.screen_manager.current = "scr 1"
+                    text: "SNGPC"
+                    IconLeftWidget:
+                        icon: 'medical-bag'
+
+                OneLineIconListItem:
+                    on_press:
+                        root.nav_drawer.set_state("close")
+                        root.screen_manager.current = "scr 1"
+                    text: "Gerenciamento"
+                    IconLeftWidget:
+                        icon: 'settings'  
+
+Screen:
+
+    MDToolbar:
+        id: toolbar
+        pos_hint: {"top": 1}
+        elevation: 10
+        title: "PharmaSys"
+        left_action_items: [["menu", lambda x: nav_drawer.set_state("open")]]
+
+    NavigationLayout:
+        x: toolbar.height
+
+        ScreenManager:
+            id: screen_manager
+                
+            Screen:
+                name: 'scr 1'
+
+                MDLabel:
+                    text: "Screen 1"
+                    halign: 'center'
+
+            Screen:
+                name: 'scr 2'
+
+                MDLabel:
+                    text: "Screen 2"
+                    halign: "center"
+
+            LojaScreen:
+                name: 'loja'
+            
+            Login:
+                name: 'login'
+
+        MDNavigationDrawer:
+            id: nav_drawer
+
+            ContentNavigationDrawer:
+                screen_manager: screen_manager
+                nav_drawer: nav_drawer    
