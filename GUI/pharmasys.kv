@@ -1,0 +1,88 @@
+#: import get_color_from_hex kivy.utils.get_color_from_hex
+
+<TelaLoja>:
+    name: 'telaloja'
+    MDLabel:
+        text: 'LOJA'
+
+<TelaInicial>:
+    toolbar: _root_toolbar
+    MDBoxLayout:
+        orientation: 'vertical'
+        MDToolbar:
+            id: _root_toolbar
+            title: 'PharmaSys - Sistema de Controle Farmacêutico'
+            md_bgcolor: rail.md_bg_color
+            left_action_items: [["menu", lambda x: root.rail_open()]]
+
+        MDBoxLayout:
+            MDNavigationRail:
+                id: rail
+                md_bg_color: get_color_from_hex("#ffffff")
+                color_normal: get_color_from_hex("#718089")
+                color_active: get_color_from_hex("#f3ab44")
+                use_resizeable: True
+
+                MDNavigationRailItem:
+                    id: loja
+                    icon: 'store'
+                    text: 'Loja'
+                    on_release:
+                        root.toolbar.title = 'PharmaSys - Frente de Loja'
+                        screen_manager.current = "telaloja"
+
+
+                MDNavigationRailItem:
+                    id: caixa
+                    icon: 'cash-register'
+                    text: 'Caixa'
+                    on_release: screen_manager.current = "screen3"
+
+                MDNavigationRailItem:
+                    id: estoque
+                    icon: 'dropbox'
+                    text: 'Estoque'
+                    on_release: screen_manager.current = "screen4"
+
+                MDNavigationRailItem:
+                    id: sngpc
+                    icon: 'medical-bag'
+                    text: 'SNGPC'
+                    on_release: screen_manager.current = "screen5"
+
+                MDNavigationRailItem:
+                    id: gerenciar
+                    icon: 'cog'
+                    text: 'Gerenciar'
+                    on_release: screen_manager.current = "screen6"
+
+            MDBoxLayout:
+                #padding: "2dp"
+                ScreenManager:
+                    id: screen_manager
+                    Login:
+
+                    LojaScreen:
+                        scr_manager: screen_manager
+
+                    MDScreen:
+                        name: "screen3"
+                        MDLabel:
+                            text: 'caixa'
+
+                    MDScreen:
+                        name: "screen4"
+                        MDLabel:
+                            text: 'estoque'
+
+                    MDScreen:
+                        name: "screen5"
+                        MDLabel:
+                            text: 'SNGPC'
+
+                    MDScreen:
+                        name: "screen6"
+                        MDLabel:
+                            text: 'Gerencia'
+
+                    Client:

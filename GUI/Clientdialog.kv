@@ -1,0 +1,69 @@
+<Client>:
+    id:tela_clientes
+    text: title
+    name: 'clientes'
+    BoxLayout:
+        orientation:'vertical'
+        BarraVoltar:
+            client: tela_clientes
+            id: title
+
+        MDSeparator:
+        BoxLayout:
+            spacing: dp(50)
+            padding: 25, 25, 25, 25
+            MDTextField:
+                padding: 25, 25, 25, 25
+                size_hint_x: None
+                width: dp(300)
+                hint_text: 'Nome'
+            MDTextField:
+                padding: 25, 25, 25, 25
+                size_hint_x: None
+                width: dp(300)
+                hint_text: 'Sobrenome'
+        BoxLayout:
+            spacing: dp(50)
+            padding: 25, 25, 25, 25
+            MDTextField:
+                size_hint_x: None
+                width: dp(200)
+                hint_text: 'CPF'
+            MDTextField:
+                size_hint_x: None
+                width: dp(200)
+                hint_text: 'Nascimento'
+        BoxLayout:
+            spacing: dp(50)
+            padding: 25, 25, 25, 25
+            MDTextField:
+                size_hint_x: None
+                width: dp(300)
+                hint_text: 'Email'
+            MDTextField:
+                size_hint_x: None
+                width: dp(200)
+                hint_text: 'Telefone'
+        BoxLayout:
+            spacing: dp(100)
+            size_hint_y: None
+            height: 60
+            #pos_hint: None, None
+            padding: 500, 20
+            MDRaisedButton:
+                text: 'Cancelar'
+                elevation_normal: 2
+                oposite_colors: True
+                pos_hint: {'x': .85}
+                md_bg_color: 1, .1, .1, 1
+            MDRaisedButton:
+                text: 'Cadastrar'
+                elevation_normal: 2
+                oposite_colors: True
+                pos_hint: {'x': .95}
+                md_bg_color: .1, 1, .1, 1
+
+<BarraVoltar>:
+    md_bg_color: 1, 1, 1, 1
+    specific_text_color: 0,0,0,1
+    right_action_items: [['arrow-left', lambda x: self.client.voltar(), 'Voltar']]

@@ -1,0 +1,63 @@
+<ClickableTextFieldRound>:
+    size_hint_y: None
+    height: text_field.height
+     
+    MDTextFieldRound:
+        id: text_field
+        hint_text: root.hint_text
+        text: root.text
+        icon_left: 'magnify'
+        padding: 20, 20, 20, 20
+            # self._lbl_icon_left.texture_size[1] + dp(15) if self.icon_left else dp(25)
+     
+    MDIconButton:
+        id: menubut
+        icon: 'arrow-down-drop-circle-outline'
+        ripple_scale: .5
+        pos_hint: {"center_y": .5}
+        pos: text_field.width -self.width +dp(8), 0
+        on_release:
+            self.icon = "arrow-down-drop-circle-outline" if self.icon == 'magnify' else 'magnify'
+            app.root.ids.screen_manager.get_screen('telaloja').open()
+            
+
+<LojaScreen>:
+    name: 'telaloja'
+    md_bg_color: [253/255, 253/255, 253/255, 1]
+    BoxLayout:
+        id: box1
+        orientation: 'vertical'
+        
+        MDToolbar:
+            md_bg_color: 1, 1, 1, 1
+            specific_text_color: 0,0,0,1
+            left_action_items:
+                [['account-plus', lambda x: root.add_client(), 'Cadastrar'],
+                ['account-search', lambda x: root.search_client(), 'Pesquisar'],
+                ['account-edit', lambda x: root.edit_client(), 'Editar'],]
+
+        ClickableTextFieldRound:
+            id: campo_texto
+            padding: 10, 10, 10, 10
+            size_hint_x: None
+            width: dp(500)
+            hint_text: "Pesquise"
+            pos_hint: {"center_x": .5, "center_y":.5}
+
+        MDBoxLayout:
+            id: table
+
+        BoxLayout:
+            orientation: 'horizontal'
+            pos_hint: {'center_x': 1, 'center_y': .1}
+            spacing: 50
+            padding: 30, 30, 5, 50
+            MDRectangleFlatIconButton:
+                pos_hint: {'center_x': 1, 'center_y': .1}
+                text: 'Carrinho'
+                icon: 'cart'
+            MDRectangleFlatIconButton:
+                pos_hint: {'center_x': 1, 'center_y': .1}
+                text: 'Finalizar Pedido'
+                icon: 'page-next'
+            #MDRectangleFlatIconButton:
