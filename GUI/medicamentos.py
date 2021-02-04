@@ -22,7 +22,6 @@ class Medicamentos(MDScreen):
         self.texto = self.process_date(date)
         self.ids.validade.texto = self.texto
 
-
     def show_date_picker(self):
         min_date = date.today()
         date_dialog = MDDatePicker(callback=self.get_date, min_date=min_date)
@@ -30,7 +29,6 @@ class Medicamentos(MDScreen):
 
 
 class Field(MDBoxLayout):
-    #hint_text = StringProperty('')
     pass
 
 class MedicamentosApp(MDApp):
