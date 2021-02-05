@@ -30,15 +30,12 @@ from models import pessoas
 from models.pessoas import User
 import infrastructure.core as db
 
-from login import Login
 
-Builder.load_file('Login.kv')
-Builder.load_file('LojaScreen.kv')
-Builder.load_file('Clientdialog.kv')
+from view.login import Login
 
-
-class BarraVoltar(MDToolbar):
-    pass
+Builder.load_file('login.kv')
+Builder.load_file('view/LojaScreen.kv')
+Builder.load_file('view/Clientdialog.kv')
 
 
 class TelaInicial(MDScreen):

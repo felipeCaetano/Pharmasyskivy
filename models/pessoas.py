@@ -14,7 +14,6 @@ class User(Base):
         return f'User: {self.nome}'
 
 
-
 class Cliente(Base):
     __tablename__ = 'clientes'
 

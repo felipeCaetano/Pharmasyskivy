@@ -5,10 +5,6 @@ from kivymd.app import MDApp
 from kivymd.uix.screen import MDScreen
 from kivy.uix.relativelayout import RelativeLayout
 
-KV = '''
-
-'''
-
 
 class ClickableTextFieldRound(RelativeLayout):
     text = StringProperty()
@@ -27,7 +23,7 @@ class Login(MDScreen):
 
 class Loginapp(MDApp):
     def build(self):
-        return Builder.load_file('Login.kv')
+        return Builder.load_file('login.kv')
         #pass
 
 if __name__ == '__main__':

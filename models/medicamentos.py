@@ -23,6 +23,7 @@ class Medicamento(Base):
     compra = Column(Float, nullable=False)
     estoque = Column(String, nullable=False)
     sngpc_control = Column(Boolean, nullable=False)
+    _observers = []
 
     def __repr__(self):
         return f'{self.codigo} {self.nome} {self.p_ativo} {self.apresentacao}' \
@@ -34,5 +35,14 @@ class Medicamento(Base):
     def __setitem__(self, key, value):
         return setattr(self, key, value)
 
+    def add_observer(self, observer):
+        self._observers.append(observer)
+
+    def remove_observer(self, observer):
+        self._observers.remove(observer)
+
+    def notify_all(self):
+        for x in self._observers:
+            x.model_is_changed()
 
 create_all()

@@ -48,7 +48,6 @@
             spacing: dp(100)
             size_hint_y: None
             height: 60
-            #pos_hint: None, None
             padding: 500, 20
             MDRaisedButton:
                 text: 'Cancelar'
@@ -63,7 +62,3 @@
                 pos_hint: {'x': .95}
                 md_bg_color: .1, 1, .1, 1
 
-<BarraVoltar>:
-    md_bg_color: 1, 1, 1, 1
-    specific_text_color: 0,0,0,1
-    right_action_items: [['arrow-left', lambda x: self.client.voltar(), 'Voltar']]

@@ -1,4 +1,5 @@
 from enum import Enum
+from typing import overload
 
 
 class Tarja(Enum):
@@ -11,6 +12,11 @@ class Tarja(Enum):
     @classmethod
     def list_names(cls):
         lista = [member.value for member in cls]
+        return lista
+
+    @classmethod
+    def list_names_kivy(cls):
+        lista = [{'text': member.value} for member in cls]
         return lista
 
 
@@ -60,6 +66,11 @@ class FormaFarmaceutica(Enum):
     @classmethod
     def list_abreviacao(cls):
         lista = [member.value[1] for member in cls]
+        return lista
+
+    @classmethod
+    def list_names_kivy(cls):
+        lista = [{'text': member.value[0]} for member in cls]
         return lista
 
 
@@ -182,6 +193,10 @@ class ClasseTerapeutica(Enum):
         lista = [member.value for member in cls]
         return lista
 
+    @classmethod
+    def list_names_kivy(cls):
+        lista = [{'text': member.value} for member in cls]
+        return lista
 
 class UnidadeDosagem(Enum):
     unidade = 'Escolha a unidade da dosagem'
@@ -202,6 +217,11 @@ class UnidadeDosagem(Enum):
     @classmethod
     def list_names(cls):
         lista = [member.value for member in cls]
+        return lista
+
+    @classmethod
+    def list_names_kivy(cls):
+        lista = [{'text': member.value} for member in cls]
         return lista
 
 
@@ -241,6 +261,11 @@ class Embalagem(Enum):
     @classmethod
     def list_names(cls):
         lista = [member.value for member in cls]
+        return lista
+
+    @classmethod
+    def list_names_kivy(cls):
+        lista = [{'text': member.value} for member in cls]
         return lista
 
 

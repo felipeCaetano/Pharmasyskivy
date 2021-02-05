@@ -1,0 +1,190 @@
+<MedicamentosView>
+
+    id: tela_medicamentos
+    name: "medicamentos"
+    text: title
+
+    MDBoxLayout:
+        padding: 20
+        spacing: 50
+        orientation:'vertical'
+
+        BarraVoltar:
+            id: title
+            client: tela_medicamentos
+            title: 'Cadastrar Medicamentos'
+
+        MDSeparator:
+
+        MDBoxLayout:
+            adaptive_height: True
+            spacing: dp(50)
+
+            Field:
+                id: txt_codigo
+                texto: 'Código'
+                tamanho: '150dp'
+
+            Field:
+                id: txt_nome
+                texto: 'Nome'
+                tamanho: '250dp'
+
+            MDBoxLayout:
+                orientation: 'vertical'
+                adaptive_size: True
+                MDLabel:
+                    id: _label
+                MDDropDownItem:
+                    id: _dropdown
+                    text: "Validade"
+                    on_release: root.show_date_picker()
+
+        MDBoxLayout:
+            adaptive_height: True
+            spacing: dp(50)
+            Field:
+                id: txt_principio
+                texto: 'Princípio Ativo'
+                tamanho: "150dp"
+
+            Field:
+                id: txt_dosagem
+                texto: 'Dosagem'
+                tamanho: '80dp'
+
+            MDDropDownItem:
+                id: drop_unidade
+                pos_hint: {'center_x': .5, 'center_y': .5}
+                text: 'Unidade'
+                on_release: root.menu_unidade.open()
+
+            MDDropDownItem:
+                id: drop_apresentacao
+                pos_hint: {'center_x': .5, 'center_y': .5}
+                text: 'Apresentação'
+                on_release: root.menu_apresentacao.open()
+
+        MDBoxLayout:
+            adaptive_height: True
+            spacing: dp(50)
+            Field:
+                id: txt_lab
+                texto: 'Laboratório'
+
+            Field:
+                id: txt_register
+                texto: 'Registro MS'
+
+            MDDropDownItem:
+                id: drop_tarja
+                pos_hint: {'center_x': .5, 'center_y': .5}
+                text: 'Tarja'
+                on_release: root.menu_tarja.open()
+
+        MDBoxLayout:
+            spacing: dp(50)
+
+            MDDropDownItem:
+                id: drop_classe
+                pos_hint: {'center_x': .5, 'center_y': .5}
+                text: 'Classe Terapeutica'
+                on_release: root.menu_classe.open()
+
+            Field:
+                id: txt_quantidade
+                texto: 'Quantidade'
+
+            MDDropDownItem:
+                id: drop_forma
+                pos_hint: {'center_x': .5, 'center_y': .5}
+                text: 'Forma Farmaceutica'
+                on_release: root.menu_forma.open()
+
+        MDBoxLayout:
+            adaptive_height: True
+            spacing: dp(50)
+
+            Field:
+                id: txt_estoque
+                texto: 'Estoque'
+
+            Field:
+                id: txt_preco
+                texto: 'Preço'
+
+            Field:
+                id: txt_compra
+                texto: 'P. Compra'
+
+        BoxLayout:
+            size_hint: .2,.2
+            pos_hint:{'right': 1, 'center_y': .5}
+            AnchorLayout:
+                size_hint: .2,.2
+                anchor_x:'right'
+                anchor_y:'bottom'
+                MDRaisedButton:
+                    text: 'Cancelar'
+                    elevation_normal: 2
+                    oposite_colors: True
+                    md_bg_color: 1, .2, .2, 1
+                    on_release: root.on_cancel(root)
+
+            AnchorLayout:
+                anchor_x:'right'
+                anchor_y:'bottom'
+                MDRaisedButton:
+                    text: 'Cadastrar'
+                    elevation_normal: 2
+                    oposite_colors: True
+                    md_bg_color: .2, .75, .2, 1
+                    on_release: root.on_save(root)
+
+<Field>:
+    adaptive_size: True
+    orientation: 'vertical'
+    spacing: dp(8)
+    texto: input_text.hint_text
+    tamanho: input_text.width
+    focus: input_text.focus
+    valor: input_text.text
+
+    MDLabel:
+        id: validade_label
+        text: input_text.hint_text + ':'
+    MDTextFieldRect:
+        color_mode: 'custom'
+        hint_text_color: .1,.09,.1,1
+        line_color_normal: self.theme_cls.opposite_bg_normal
+        line_color_focus:
+            # This is the color used by the textfield
+            self.theme_cls.opposite_bg_normal
+        mode: "rectangle"
+        required: True
+        id: input_text
+        size_hint: None, None
+        height: '30dp'
+        width: root.tamanho
+        hint_text: root.texto
+        text: root.valor
+
+
+<Select>:
+    label: label.text
+    selector: dropdown.text
+    tamanho: dropdown.width
+
+    orientation: 'vertical'
+    adaptive_size: True
+
+    MDLabel:
+        id: label
+        text: root.label
+        size_hint_x: None
+        width: root.tamanho
+    MDDropDownItem:
+        id: dropdown
+        text: root.selector
+
+        #on_release: root.action()
