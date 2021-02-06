@@ -9,7 +9,8 @@ from kivymd.uix.picker import MDDatePicker
 from kivymd.uix.screen import MDScreen
 
 from infrastructure.observer import Observer
-from models.medicmantosenum import ClasseTerapeutica, UnidadeDosagem, Embalagem, Tarja, FormaFarmaceutica
+from models.medicmantosenum import ClasseTerapeutica, UnidadeDosagem, \
+    Embalagem, Tarja, FormaFarmaceutica
 
 from view.barra_voltar import BarraVoltar
 
@@ -18,7 +19,6 @@ Builder.load_file(os.path.join(os.path.dirname(__file__), "medicamentos.kv"))
 
 
 class MedicamentosView(MDScreen, Observer):
-    #texto = StringProperty()
     controller = ObjectProperty()
     model = ObjectProperty()
 
@@ -35,12 +35,10 @@ class MedicamentosView(MDScreen, Observer):
         self.menu_tarja = self.create_dropdown_menu(self.ids.drop_tarja)
         self.menu_classe = self.create_dropdown_menu(self.ids.drop_classe)
         self.menu_forma = self.create_dropdown_menu(self.ids.drop_forma)
-        self.menu_apresentacao = self.create_dropdown_menu(self.ids.drop_apresentacao)
+        self.menu_apresentacao = self.create_dropdown_menu(
+            self.ids.drop_apresentacao)
 
         self.model.add_observer(self)
-
-    def model_is_changed(self):
-        print('is changed')
 
     def on_save(self, instance):
         self.controller.on_save(instance)
@@ -74,6 +72,9 @@ class MedicamentosView(MDScreen, Observer):
         min_date = date.today()
         date_dialog = MDDatePicker(callback=self.get_date, min_date=min_date)
         date_dialog.open()
+
+    def model_is_changed(self):
+        print('Salvo com sucesso')
 
 
 class Field(MDBoxLayout):

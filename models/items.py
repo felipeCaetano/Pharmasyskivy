@@ -24,6 +24,7 @@ class Item(Base):
                f'{self.estoque}' \
                f'{self.preco}'
 
+
 class ItemVendido:
     def __init__(self, produto):
         self.codigo = produto.item.codigo
@@ -39,11 +40,11 @@ class ItemVendido:
 
     def __repr__(self):
         return f'{self.codigo} ' \
-           f'{self.nome} ' \
-           f'{self.quantidade} ' \
-           f'{self.estoque} ' \
-           f'{self.preco} '\
-           f'{self.valor} '
+               f'{self.nome} ' \
+               f'{self.quantidade} ' \
+               f'{self.estoque} ' \
+               f'{self.preco} ' \
+               f'{self.valor} '
 
 
 create_all()

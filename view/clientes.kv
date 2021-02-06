@@ -1,4 +1,4 @@
-<Client>:
+<ClientesView>:
     id:tela_clientes
     text: title
     name: 'clientes'
@@ -7,6 +7,7 @@
         BarraVoltar:
             client: tela_clientes
             id: title
+            title: 'Cadastrar Clientes'
 
         MDSeparator:
         BoxLayout:
@@ -55,10 +56,13 @@
                 oposite_colors: True
                 pos_hint: {'x': .85}
                 md_bg_color: 1, .1, .1, 1
+                on_release: root.on_cancel()
+
             MDRaisedButton:
                 text: 'Cadastrar'
                 elevation_normal: 2
                 oposite_colors: True
                 pos_hint: {'x': .95}
                 md_bg_color: .1, 1, .1, 1
+                on_release: root.on_save(self)
 

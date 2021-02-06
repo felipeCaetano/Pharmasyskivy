@@ -1,6 +1,8 @@
-<ClickableTextFieldRound>:
+<ClickableTextFieldRound>
+
     size_hint_y: None
     height: text_field.height
+    text: text_field.text
      
     MDTextFieldRound:
         id: text_field
@@ -18,12 +20,16 @@
         pos: text_field.width -self.width +dp(8), 0
         on_release:
             self.icon = "arrow-down-drop-circle-outline" if self.icon == 'magnify' else 'magnify'
-            app.root.ids.screen_manager.get_screen('telaloja').open()
+            root.parent.parent.open()
             
 
-<LojaScreen>:
+<FrentedeLojaView>
+
     name: 'telaloja'
     md_bg_color: [253/255, 253/255, 253/255, 1]
+    ScreenManager:
+        id: screen_manager
+
     BoxLayout:
         id: box1
         orientation: 'vertical'
@@ -42,6 +48,7 @@
             size_hint_x: None
             width: dp(500)
             hint_text: "Pesquise"
+            text: self.text
             pos_hint: {"center_x": .5, "center_y":.5}
 
         MDBoxLayout:
@@ -60,4 +67,3 @@
                 pos_hint: {'center_x': 1, 'center_y': .1}
                 text: 'Finalizar Pedido'
                 icon: 'page-next'
-            #MDRectangleFlatIconButton:

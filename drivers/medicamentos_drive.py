@@ -14,9 +14,6 @@ class MedicamentosApp(MDApp):
     def build(self):
         return self.controller.get_screen()
 
-    def do_action(self, instance):
-        pass
-
 
 if __name__ == '__main__':
     MedicamentosApp().run()

@@ -1,5 +1,4 @@
 from enum import Enum
-from typing import overload
 
 
 class Tarja(Enum):
@@ -78,7 +77,8 @@ class ClasseTerapeutica(Enum):
     nenhum = "Escolha a Classe Terapeutica"
     A02A = 'Antiácidos'.upper()
     A02D = 'Antiflatulentes'.upper()
-    A02X = "outros antiacidos event medicamentos para ulcera event da flatulencia".upper()
+    A02X = "outros antiacidos event medicamentos para ulcera event da  " \
+           "flatulencia".upper()
     Analgesico = 'Analgésicos'.upper()
     Anestesico = 'Anestésicos'.upper()
     Anorexigeno = 'Anorexigenos'.upper()
@@ -113,7 +113,8 @@ class ClasseTerapeutica(Enum):
     A04 = 'Antieméticos event Antinauseantes'.upper()
     A05A = 'Terapêutica Biliar'.upper()
     A05B = 'Terapêutica hepática lipotrópicos'.upper()
-    A05C = 'Medicamentos para Terapêutica biliar event hepática associados'.upper()
+    A05C = 'Medicamentos para Terapêutica biliar event hepática  ' \
+           'associados'.upper()
     A10A = "Insulinas".upper()
     a_fungic = 'Antifúngicos'.upper()
     a_grips = 'Antigripais'.upper()
@@ -197,6 +198,7 @@ class ClasseTerapeutica(Enum):
     def list_names_kivy(cls):
         lista = [{'text': member.value} for member in cls]
         return lista
+
 
 class UnidadeDosagem(Enum):
     unidade = 'Escolha a unidade da dosagem'

@@ -14,28 +14,6 @@ class User(Base):
         return f'User: {self.nome}'
 
 
-class Cliente(Base):
-    __tablename__ = 'clientes'
-
-    id_client = Column(Integer, primary_key=True, autoincrement=True)
-    cpf = Column(String(12), nullable=False, unique=True)
-    nome = Column(String(50), nullable=False, index=True)
-    sobrenome = Column(String(50), nullable=False)
-    email = Column(String(140), nullable=False)
-    telefone = Column(String(11))
-    nascimento = Column(String, nullable=False)
-    sexo = Column(String(1), nullable=False)
-
-    def __repr__(self):
-        return f'Cliente: {self.cpf} | {self.nome} {self.sobrenome}'
-
-    def __getitem__(self, item):
-        return getattr(self, item.lower())
-
-    def __setitem__(self, key, value):
-        return setattr(self, key, value)
-
-
 class Funcionario(Base):
     __tablename__ = 'funcionarios'
     id_funcionario = Column(Integer, primary_key=True, autoincrement=True)

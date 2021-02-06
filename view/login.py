@@ -21,10 +21,11 @@ class Login(MDScreen):
         print("logando")
         print(self.ids.login, self.ids.senha)
 
+
 class Loginapp(MDApp):
     def build(self):
         return Builder.load_file('login.kv')
-        #pass
+
 
 if __name__ == '__main__':
     Loginapp().run()

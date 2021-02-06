@@ -17,7 +17,9 @@ KV = '''
         color_active: app.theme_cls.primary_light
         icon_left: "key-variant"
         padding:
-            self._lbl_icon_left.texture_size[1] + dp(10) if self.icon_left else dp(15),                 (self.height / 2) - (self.line_height / 2),                 self._lbl_icon_right.texture_size[1] + dp(20),                 0
+            self._lbl_icon_left.texture_size[1] + dp(10) if self.icon_left 
+            else dp(15), (self.height / 2) - (self.line_height / 2), 
+            self._lbl_icon_right.texture_size[1] + dp(20), 0
 
     MDIconButton:
         icon: "eye-off"

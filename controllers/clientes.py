@@ -1,11 +1,10 @@
-from view.medicamentos import MedicamentosView
+from view.clientes import ClientesView
 
 
-class MedicamentosController:
-
+class ClientesController:
     def __init__(self, model):
         self.model = model
-        self.view = MedicamentosView(controller=self, model=self.model)
+        self.view = ClientesView(controller=self, model=self.model)
 
     def get_screen(self):
         return self.view
