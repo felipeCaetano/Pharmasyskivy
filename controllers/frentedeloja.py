@@ -1,6 +1,8 @@
+from kivy.metrics import dp
 from kivymd.uix.datatables import MDDataTable
 from kivymd.uix.label import MDLabel
 
+from controllers.clientes import ClientesController
 from view.frentedeloja import FrentedeLojaView
 
 
@@ -13,29 +15,40 @@ class FrentedeLojaController:
     def get_screen(self):
         return self.view
 
-    def on_search(self, type, text):
-        print(type, text)
-        colum_data = self.model.get_column_data(type)
-        row_data = list(self.model.query(type, text))
-        row_data = row_data.remove(row_data[0])
-        print('Achei:', self.model.query(type, text))
-        #
-        if not row_data:
+    def on_add_cliente(self):
+        # self.scr_manager.current = 'clientes'
+        # self.scr_manager.get_screen(
+        #     'clientes').text.title = 'Cadastrar Cliente:'
+        pass
+
+    def on_search(self, type_search, text):
+        colum_data = self.model.get_column_data(type_search)
+        response, content = self.model.query(type_search, text)
+        print('O conteudo: ', content)
+        row_data_fake = []
+        if response:
+            row_data = tuple([x.get_data() for x in list(content)])
+            for i in row_data[0]:
+                row_data_fake.append('')
+            row_data_fake = tuple(row_data_fake)
+
+        if not response:
             data_table = MDLabel(
                 text='Não há resultados.', font_size=72, bold=True,
                 pos_hint={'center_x': .5, 'center_y': .5})
         else:
             data_table = MDDataTable(
-                size_hint=(.7, .6),
+                size_hint=(0.7, 0.6),
+                use_pagination=True,
                 check=True,
+                # name column, width column, sorting function column(optional)
                 column_data=colum_data,
-                row_data=row_data,
-                elevation=2,
-                rows_num=len(row_data),
+                row_data=[row_data[0],
+                          row_data_fake],
             )
-        for chld in self.ids.table.children:
-            self.ids.table.remove_widget(chld)
-        self.ids.table.add_widget(data_table)
+        for chld in self.view.ids.table.children:
+            self.view.ids.table.remove_widget(chld)
+        self.view.ids.table.add_widget(data_table)
 
     def on_save(self, instance):
         for id in instance.ids:

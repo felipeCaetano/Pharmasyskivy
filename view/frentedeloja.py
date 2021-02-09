@@ -15,6 +15,7 @@ from kivymd.uix.screen import MDScreen
 from kivymd.uix.textfield import MDTextField
 
 from infrastructure.observer import Observer
+from models.frentedeloja import FrentedeLoja
 
 Builder.load_file(os.path.join(os.path.dirname(__file__), 'frentedeloja.kv'))
 
@@ -27,13 +28,21 @@ class ClickableTextFieldRound(RelativeLayout):
 class FrentedeLojaView(MDScreen, Observer):
     controller = ObjectProperty()
     model = ObjectProperty()
+    name = StringProperty()
 
     def __init__(self, **kwargs):
         super().__init__(**kwargs)
+        print("ESQUEMA:", dir(self))
+        print("ESQUEMA CONTROLLER:", dir(self.controller))
+        print("ESQUEMA MODEL:", dir(self.model))
         self.model.add_observer(self)
-        self.scr_manager = self.ids.screen_manager
         menu_items = [{"text": 'Medicamentos'}, {"text": 'Produtos'}]
         self.menu_pesquisa = self.create_dropdown_menu(menu_items)
+        self.scr_manager = self.ids.screen_manager
+        self.add_screens(self.scr_manager)
+
+    def add_screens(self, screenmanager):
+         pass#screenmanager.add_widget()
 
     def create_dropdown_menu(self, menu_items):
         menu = MDDropdownMenu(

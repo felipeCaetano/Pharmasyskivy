@@ -1,15 +1,19 @@
 #: import get_color_from_hex kivy.utils.get_color_from_hex
 #: import ClientesView view.clientes
+#: import LoginView view.login
+#: import FrentedeLojaView view.frentedeloja
+#
+#<FrentedeLojaView>:
+#    controller:root.controller
+#    model: root.model
+#    name: 'telaloja'
 
-<TelaLoja>:
-    name: 'telaloja'
-    MDLabel:
-        text: 'LOJA'
-
-<TelaInicial>:
+<StartScreenView>
     toolbar: _root_toolbar
+
     MDBoxLayout:
         orientation: 'vertical'
+
         MDToolbar:
             id: _root_toolbar
             title: 'PharmaSys - Sistema de Controle Farmacêutico'
@@ -17,6 +21,7 @@
             left_action_items: [["menu", lambda x: root.rail_open()]]
 
         MDBoxLayout:
+
             MDNavigationRail:
                 id: rail
                 md_bg_color: get_color_from_hex("#ffffff")
@@ -36,7 +41,8 @@
                     id: caixa
                     icon: 'cash-register'
                     text: 'Caixa'
-                    on_release: screen_manager.current = "screen3"
+                    on_release:
+                        screen_manager.current = "screen3" if root.auth else "telalogin"
 
                 MDNavigationRailItem:
                     id: estoque
@@ -57,31 +63,34 @@
                     on_release: screen_manager.current = "screen6"
 
             MDBoxLayout:
+
                 ScreenManager:
                     id: screen_manager
-                    Login:
 
-                    LojaScreen:
-                        scr_manager: screen_manager
+#
+#                    LoginView:
+#
+                    #FrentedeLojaView:
 
-                    MDScreen:
-                        name: "screen3"
-                        MDLabel:
-                            text: 'caixa'
-
-                    MDScreen:
-                        name: "screen4"
-                        MDLabel:
-                            text: 'estoque'
-
-                    MDScreen:
-                        name: "screen5"
-                        MDLabel:
-                            text: 'SNGPC'
-
-                    MDScreen:
-                        name: "screen6"
-                        MDLabel:
-                            text: 'Gerencia'
-
-                    ClientesView:
+#
+#                    MDScreen:
+#                        name: "screen3"
+#                        MDLabel:
+#                            text: 'caixa'
+##
+#                    MDScreen:
+#                        name: "screen4"
+#                        MDLabel:
+#                            text: 'estoque'
+#
+#                    MDScreen:
+#                        name: "screen5"
+#                        MDLabel:
+#                            text: 'SNGPC'
+#
+#                    MDScreen:
+#                        name: "screen6"
+#                        MDLabel:
+#                            text: 'Gerencia'
+#
+#                    ClientesView:

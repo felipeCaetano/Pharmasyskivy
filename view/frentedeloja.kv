@@ -23,10 +23,11 @@
             root.parent.parent.open()
             
 
-<FrentedeLojaView>
-
+<FrentedeLojaView>:
+    id: telaloja
     name: 'telaloja'
     md_bg_color: [253/255, 253/255, 253/255, 1]
+
     ScreenManager:
         id: screen_manager
 
@@ -53,6 +54,8 @@
 
         MDBoxLayout:
             id: table
+            MDList:
+                id: list
 
         BoxLayout:
             orientation: 'horizontal'

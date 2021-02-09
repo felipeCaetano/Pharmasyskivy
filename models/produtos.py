@@ -1,6 +1,11 @@
-from sqlalchemy import Column, Integer, String, Float
+from sqlalchemy import Column, Integer, String, Float, or_
+from sqlalchemy.orm.exc import NoResultFound
 
 from infrastructure.core import *
+
+
+def conect_db():
+    return session
 
 
 class Produto(Base):
@@ -19,6 +24,65 @@ class Produto(Base):
 
     def __repr__(self):
         return f'{self.codigo} {self.nome}  {self.estoque} {self.preco}'
+
+    def get_data(self):
+        return [self.codigo, self.nome, self.descricao, self.preco,
+                self.quantidade, self.estoque]
+
+    # def __getitem__(self, item):
+    #     return getattr(self, item.lower())
+    #
+    # def __setitem__(self, key, value):
+    #     return setattr(self, key, value)
+
+    def add_observer(self, observer):
+        self._observers.append(observer)
+
+    def remove_observer(self, observer):
+        self._observers.remove(observer)
+
+    def notify_all(self):
+        for x in self._observers:
+            x.model_is_changed()
+
+    def add(self):
+        print('salvei no banco')
+        self.notify_all()
+
+    def find_byid(self, idnum):
+        session = conect_db()
+        record = session.query(Produto).filter_by(id_client=idnum).one()
+        session.close()
+        return record
+
+    def get_all(self):
+        """
+        faz a busca de toda uma tabela
+        :return: registros de uma tabela
+        """
+        session = conect_db()
+        record = session.query(Produto).all()
+        session.close()
+        return record
+
+    def find_record(self, text, nome=""):
+        """
+        encontra um registro especifico da tabela usando o keyword
+        :param text:
+        :param nome: parametro a ser pesquisado
+        :return: um registro da tabela
+        """
+        session = conect_db()
+        try:
+            result = session.query(Produto).filter(
+                or_(Produto.nome.contains(text),
+                    Produto.descricao.contains(text),
+                    Produto.codigo.contains(text))).all()
+            session.close()
+            return True, result
+        except NoResultFound:
+            session.close()
+            return False, 'NOT_REGISTERED'
 
 
 create_all()

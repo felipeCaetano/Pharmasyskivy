@@ -31,15 +31,20 @@ class Medicamento(Base):
     _observers = []
 
     def __repr__(self):
-        return f'{self.codigo} {self.nome} {self.p_ativo}' \
-                f'{self.apresentacao} {self.dosagem} {self.preco} ' \
+        return f'Medicamento {self.codigo}, {self.nome}, {self.p_ativo},' \
+               f' {self.apresentacao}, {self.dosagem}, {self.preco}, ' \
                f' {self.estoque}'
 
-    def __getitem__(self, item):
-        return getattr(self, item.lower())
+    def get_data(self):
+        return [self.codigo, self.nome, self.p_ativo, self.laboratorio,
+                self.apresentacao, self.dosagem, self.preco, self.quantidade,
+                self.tarja, self.estoque]
 
-    def __setitem__(self, key, value):
-        return setattr(self, key, value)
+    # def __getitem__(self, item):
+    #     return getattr(self, item.lower())
+    #
+    # def __setitem__(self, key, value):
+    #     return setattr(self, key, value)
 
     def add_observer(self, observer):
         self._observers.append(observer)
@@ -83,6 +88,7 @@ class Medicamento(Base):
             result = session.query(Medicamento).filter(
                 Medicamento.nome == text).one()
             session.close()
+            print(type(result))
             return True, result
         except NoResultFound:
             session.close()

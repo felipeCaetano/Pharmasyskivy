@@ -1,4 +1,5 @@
-<Login>:
+<LoginView>
+    name: 'telalogin'
     md_bg_color: [253/255, 253/255, 253/255, 1]
     
     MDCard:
@@ -22,6 +23,7 @@
             
         MDTextField:
             id: login
+            write_tab: False
             hint_text: 'Login'
             icon_right: 'account'
             size_hint_x: None
@@ -29,6 +31,7 @@
             font_size: 20
             pos_hint: {"center_x": .5}
             color_active: [.99, .99, 1, 1]
+            on_text_validate: root.text_validator(self, self.text)
             
         MDTextField:
             id: senha
@@ -40,6 +43,7 @@
             pos_hint: {"center_x": .5}
             color_active: [.99, .99, 1, 1]
             password: True
+            on_text_validate: root.text_validator(self)
         
         MDLabel:
             id: on_error 
@@ -56,7 +60,7 @@
             text: 'ENTRAR'
             pos_hint: {"center_x": .5}
             font_size: 15
-            on_release: app.do_login()
+            on_release: root.do_login()
             
         Widget:
             size_hint_y: None

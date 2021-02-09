@@ -11,7 +11,7 @@ from kivymd.uix.menu import MDDropdownMenu
 from kivymd.uix.screen import MDScreen
 from kivymd.uix.textfield import MDTextField
 
-from view.login import Login
+from view.login import LoginView
 
 Builder.load_file('login.kv')
 Builder.load_file('clientes.kv')
@@ -19,7 +19,7 @@ Builder.load_file('clientes.kv')
 
 class TelaInicial(MDScreen):
     def build(self):
-        tela = Builder.load_file('pharmasys.kv')
+        tela = Builder.load_file('startscreen.kv')
         return tela
 
     def on_relese(self):
@@ -118,12 +118,12 @@ class PharmaSysApp(MDApp):
         return TelaInicial()
 
     def on_start(self):
-        self.login = Login()
+        self.login = LoginView()
         for item in self.root.ids.rail.ids.box.children:
             item.width = "190dp"
 
-    def do_login(self):
-        Login.do_login(self.login)
+    # def do_login(self):
+    #     Login.do_login(self.login)
 
 
 if __name__ == '__main__':
