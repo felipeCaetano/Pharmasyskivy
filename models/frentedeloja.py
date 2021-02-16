@@ -22,7 +22,7 @@ class FrentedeLoja:
         for x in self._observers:
             x.model_is_changed()
 
-    def get_column_data(self, type):
+    def get_column_data(self, data_type):
         column_datas = {
             'Medicamentos': [
                 ('Código', dp(50)), ('Nome', dp(60)), ('Princípio', dp(80)),
@@ -37,7 +37,7 @@ class FrentedeLoja:
                 ('preco', dp(30)), ('quantidade', dp(50)), ('estoque', dp(20)),
             ]
         }
-        return column_datas[type]
+        return column_datas[data_type]
 
     def query(self, type_search, text=None):
         if type_search == 'Medicamentos':

@@ -11,11 +11,13 @@ class MedicamentosController:
         return self.view
 
     def on_save(self, instance):
-        for id in instance.ids:
-            if 'txt_' in id:
-                print(id, instance.ids[id], instance.ids[id].valor)
-            elif 'drop_' in id:
-                print(id, instance.ids[id], instance.ids[id].text)
+        for component in instance.ids:
+            if 'txt_' in component:
+                print(component, instance.ids[component],
+                      instance.ids[component].valor)
+            elif 'drop_' in component:
+                print(component, instance.ids[component],
+                      instance.ids[component].text)
         self.model.add()
 
     def on_cancel(self):

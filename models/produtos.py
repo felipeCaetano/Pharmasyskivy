@@ -21,6 +21,7 @@ class Produto(Base):
     compra = Column(Float, nullable=False)
     validade = Column(String, nullable=False)
     tipo = Column(String, nullable=False)
+    _observers = []
 
     def __repr__(self):
         return f'{self.codigo} {self.nome}  {self.estoque} {self.preco}'
@@ -29,11 +30,17 @@ class Produto(Base):
         return [self.codigo, self.nome, self.descricao, self.preco,
                 self.quantidade, self.estoque]
 
-    # def __getitem__(self, item):
-    #     return getattr(self, item.lower())
-    #
-    # def __setitem__(self, key, value):
-    #     return setattr(self, key, value)
+    def validate(self, text):
+        if not text:
+            error = True
+            msg = 'Campo Obrigatório'
+        elif text.isnumeric() or text.isspace():
+            msg = "formato inválido"
+            error = True
+        elif text.isalpha():
+            msg = 'Sucesso'
+            error = False
+        return error, msg
 
     def add_observer(self, observer):
         self._observers.append(observer)
@@ -65,7 +72,7 @@ class Produto(Base):
         session.close()
         return record
 
-    def find_record(self, text, nome=""):
+    def find_record(self, text):
         """
         encontra um registro especifico da tabela usando o keyword
         :param text:

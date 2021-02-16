@@ -12,3 +12,6 @@ kv = """
 class BarraVoltar(MDToolbar):
     def build(self):
         return Builder.load_string(kv)
+
+    def voltar(self):
+        pass

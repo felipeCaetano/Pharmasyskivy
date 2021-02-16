@@ -2,11 +2,11 @@ from enum import Enum
 
 
 class Tarja(Enum):
-    choice = 'Escolha uma Tarja'
-    sem_tarja = 'Sem Tarja'.upper()
-    vermelha = 'Vermelha'.upper()
-    vermelharest = 'Vermelha sob restrição'.upper()
-    preta = 'Preta'.upper()
+    tipo = 'Tarja:'
+    sem_tarja = 'Sem Tarja'
+    vermelha = 'Vermelha'
+    vermelharest = 'Vermelha restr.'
+    preta = 'Preta'
 
     @classmethod
     def list_names(cls):
@@ -20,7 +20,7 @@ class Tarja(Enum):
 
 
 class FormaFarmaceutica(Enum):
-    choice = ('Escolha Forma Farmaceutica', "")
+    choice = ('Forma Farmaceutica:', "")
     adesivo = ("ADESIVO", "ADES")
     anel = ("ANEL", "ANEL")
     barra = ('BARRA', "BAR")
@@ -74,120 +74,120 @@ class FormaFarmaceutica(Enum):
 
 
 class ClasseTerapeutica(Enum):
-    nenhum = "Escolha a Classe Terapeutica"
-    A02A = 'Antiácidos'.upper()
-    A02D = 'Antiflatulentes'.upper()
-    A02X = "outros antiacidos event medicamentos para ulcera event da  " \
-           "flatulencia".upper()
-    Analgesico = 'Analgésicos'.upper()
-    Anestesico = 'Anestésicos'.upper()
-    Anorexigeno = 'Anorexigenos'.upper()
-    Ansiolitico = 'Ansiolíticos'.upper()
-    a_hemor = 'Anti-hemorrágicos'.upper()
-    a_hiperten = 'Anti-hipertensivos'.upper()
-    a_histam = 'Anti-histamínicos'.upper()
-    a_infne = 'Anti-inflamatórios não esteróides'.upper()
-    a_agreg = 'Antiagregantes'.upper()
-    a_anemic = 'Antianemicos'.upper()
-    a_arritm = 'Antiarritmicos'.upper()
-    a_asmat = 'Antiasmáticos'.upper()
-    a_biotic = 'Antibióticos'.upper()
-    a_coagul = 'Anticoagulantes'.upper()
-    a_colica = 'Anticólica'.upper()
-    a_concep = 'Anticoncepcionais'.upper()
-    a_convul = 'Anticonvulsivantes'.upper()
-    a_depres = 'Antidepressivos'.upper()
-    a_diabet = 'Antidiabéticos'.upper()
-    A03A = "antiespasmodicos event anticolinérgicos sintéticos".upper()
-    A03C = "antiespasmodicos em associação com psicolépticos".upper()
-    A03D = "antiespasmodicos em associação com analgésicos".upper()
-    A03B = "Beladona event derivados simples".upper()
-    A03F = "Propulsivos".upper()
-    A07 = 'Antidiarreicos'.upper()
-    A07A = 'Antiinfeciosos intestinais'.upper()
-    A07C = 'elactrólitos com hidratos de carbono'.upper()
-    A07D = 'antiprupulsivos'.upper()
-    A07E = 'antiinflamatórios instestinais'.upper()
-    A07F = 'microorganismos antidiarréicos'.upper()
-    A08 = 'Preparados antiobesidade, excluindo dietéticos'.upper()
-    A04 = 'Antieméticos event Antinauseantes'.upper()
-    A05A = 'Terapêutica Biliar'.upper()
-    A05B = 'Terapêutica hepática lipotrópicos'.upper()
+    nenhum = "Classe Terapeutica:"
+    A02A = 'Antiácidos'
+    A02D = 'Antiflatulentes'
+    A02X = "Outros antiacidos event medicamentos para ulcera event da  " \
+           "flatulencia"
+    Analgesico = 'Analgésicos'
+    Anestesico = 'Anestésicos'
+    Anorexigeno = 'Anorexigenos'
+    Ansiolitico = 'Ansiolíticos'
+    a_hemor = 'Anti-hemorrágicos'
+    a_hiperten = 'Anti-hipertensivos'
+    a_histam = 'Anti-histamínicos'
+    a_infne = 'Anti-inflamatórios não esteróides'
+    a_agreg = 'Antiagregantes'
+    a_anemic = 'Antianemicos'
+    a_arritm = 'Antiarritmicos'
+    a_asmat = 'Antiasmáticos'
+    a_biotic = 'Antibióticos'
+    a_coagul = 'Anticoagulantes'
+    a_colica = 'Anticólica'
+    a_concep = 'Anticoncepcionais'
+    a_convul = 'Anticonvulsivantes'
+    a_depres = 'Antidepressivos'
+    a_diabet = 'Antidiabéticos'
+    A03A = "Antiespasmodicos event anticolinérgicos sintéticos"
+    A03C = "Antiespasmodicos em associação com psicolépticos"
+    A03D = "Antiespasmodicos em associação com analgésicos"
+    A03B = "Beladona event derivados simples"
+    A03F = "Propulsivos"
+    A07 = 'Antidiarreicos'
+    A07A = 'Antiinfeciosos intestinais'
+    A07C = 'Elactrólitos com hidratos de carbono'
+    A07D = 'Antiprupulsivos'
+    A07E = 'Antiinflamatórios instestinais'
+    A07F = 'Microorganismos antidiarréicos'
+    A08 = 'Preparados antiobesidade, excluindo dietéticos'
+    A04 = 'Antieméticos event Antinauseantes'
+    A05A = 'Terapêutica Biliar'
+    A05B = 'Terapêutica hepática lipotrópicos'
     A05C = 'Medicamentos para Terapêutica biliar event hepática  ' \
-           'associados'.upper()
-    A10A = "Insulinas".upper()
-    a_fungic = 'Antifúngicos'.upper()
-    a_grips = 'Antigripais'.upper()
-    a_inftop = 'Anti-inflamatorio Topico'.upper()
-    a_lipem = 'Antilipemicos'.upper()
-    a_lipemrc = 'Antilipemicos - Redutores do colesterol'.upper()
-    a_mico = 'Antimicoticos'.upper().upper()
-    a_micos = 'Antimicoticos Sistemicos'.upper()
-    a_micot = 'Antimicoticos Topicos'.upper()
-    a_paras = 'Antiparasitários'.upper()
-    a_park = 'Antiparkinsonianos'.upper()
-    a_piret = 'Antipiréticos'.upper()
-    a_psic = 'Antipsicóticos'.upper()
-    a_sept_or = 'Antissepticos Orais'.upper()
-    a_termic = 'Antitérmicos'.upper()
-    a_tuss = 'Antitussígenos'.upper()
-    a_ulcer = 'Antiulcerosos'.upper()
-    a_varic = 'Antivaricosos'.upper()
-    a_vertig = 'Antivertiginosos'.upper()
-    A11B = "Multivitaminas, associação".upper()
-    A11C = "Multivitaminas, simples".upper()
-    A13 = "Tonicos".upper()
-    a_virais = 'Antivirais'.upper()
-    ativador = 'Ativadores do Metabolismo Cerebral'.upper()
-    benzod = 'Benzodiazepinas'.upper()
-    betab = 'Betabloqueadores'.upper()
-    bifosf = 'Bifosfonatos'.upper()
-    broncod = 'Broncodilatadores'.upper()
-    cardiot = 'Cardiotônicos'.upper()
-    cicatriz = 'Cicatrizantes'.upper()
-    coenzim = 'Coenzimas'.upper()
-    cortic = 'Corticóides'.upper()
-    cortic_s = 'Corticosteroides Sistemicos'.upper()
-    cortic_t = 'Corticosteroides Topicos'.upper()
-    Defatig = 'Defatigantes'.upper()
-    descong = 'Descongestionantes nasais'.upper()
-    diuret = 'Diuréticos'.upper()
-    eletrol = 'Eletrolitos'.upper()
-    A09 = 'Digestivos, incluindo Enzimas'.upper()
-    pancreas = 'Pancreáticas'.upper()
-    A15 = 'Estimulantes do Apetite'.upper()
-    A16 = 'outros produtos para as vias digestivas event metabolismo'.upper()
-    estimul_r = 'Estimulantes respiratórios'.upper()
-    expect = 'Expectorantes'.upper()
-    fitot = 'Fitoterápicos'.upper()
-    sangue = 'Frações do sangue ou plasma exceto gamaglobulina'.upper()
-    hepato = 'Hepatoprotetores'.upper()
-    higien = 'Higiene'.upper()
-    hipono = 'Hipnóticos'.upper()
-    hipogli = 'Hipoglicemiantes Orais'.upper()
-    homeop = 'Homeopáticos'.upper()
-    hormon = 'Hormônios'.upper()
-    imunomod = 'Imunomoduladores'.upper()
-    imunosup = 'Imunossupressores'.upper()
-    indutor = 'Indutores do Sono'.upper()
-    A06 = 'Laxativos'.upper()
-    manuart = 'Manutenção das articulações'.upper()
-    mucol = 'Mucolíticos'.upper()
-    neurole = 'Neurolepticos'.upper()
-    plaquet = 'Plaquetarios'.upper()
-    possos = 'Problemas ósseos'.upper()
-    psico = 'Psicoanalépticos'.upper()
-    relax = 'Relaxantes musculares'.upper()
-    A14 = "anabolizantes".upper()
-    repel = 'Repelentes'.upper()
-    sedat = 'Sedativos'.upper()
-    sedat_t = 'Sedativos da Tosse'.upper()
-    soliso = 'Soluções Isomóticas Salinas Simples'.upper()
-    vasocon = 'Vasoconstritores'.upper()
-    vasod = 'Vasodilatadores'.upper()
-    A11 = 'Vitaminas'.upper()
-    A12A = 'Calcio'.upper()
-    A12C = 'Outros suplementos minerais'.upper()
+           'associados'
+    A10A = "Insulinas"
+    a_fungic = 'Antifúngicos'
+    a_grips = 'Antigripais'
+    a_inftop = 'Anti-inflamatorio Topico'
+    a_lipem = 'Antilipemicos'
+    a_lipemrc = 'Antilipemicos - Redutores do colesterol'
+    a_mico = 'Antimicoticos'
+    a_micos = 'Antimicoticos Sistemicos'
+    a_micot = 'Antimicoticos Topicos'
+    a_paras = 'Antiparasitários'
+    a_park = 'Antiparkinsonianos'
+    a_piret = 'Antipiréticos'
+    a_psic = 'Antipsicóticos'
+    a_sept_or = 'Antissepticos Orais'
+    a_termic = 'Antitérmicos'
+    a_tuss = 'Antitussígenos'
+    a_ulcer = 'Antiulcerosos'
+    a_varic = 'Antivaricosos'
+    a_vertig = 'Antivertiginosos'
+    A11B = "Multivitaminas, associação"
+    A11C = "Multivitaminas, simples"
+    A13 = "Tonicos"
+    a_virais = 'Antivirais'
+    ativador = 'Ativadores do Metabolismo Cerebral'
+    benzod = 'Benzodiazepinas'
+    betab = 'Betabloqueadores'
+    bifosf = 'Bifosfonatos'
+    broncod = 'Broncodilatadores'
+    cardiot = 'Cardiotônicos'
+    cicatriz = 'Cicatrizantes'
+    coenzim = 'Coenzimas'
+    cortic = 'Corticóides'
+    cortic_s = 'Corticosteroides Sistemicos'
+    cortic_t = 'Corticosteroides Topicos'
+    Defatig = 'Defatigantes'
+    descong = 'Descongestionantes nasais'
+    diuret = 'Diuréticos'
+    eletrol = 'Eletrolitos'
+    A09 = 'Digestivos, incluindo Enzimas'
+    pancreas = 'Pancreáticas'
+    A15 = 'Estimulantes do Apetite'
+    A16 = 'outros produtos para as vias digestivas event metabolismo'
+    estimul_r = 'Estimulantes respiratórios'
+    expect = 'Expectorantes'
+    fitot = 'Fitoterápicos'
+    sangue = 'Frações do sangue ou plasma exceto gamaglobulina'
+    hepato = 'Hepatoprotetores'
+    higien = 'Higiene'
+    hipono = 'Hipnóticos'
+    hipogli = 'Hipoglicemiantes Orais'
+    homeop = 'Homeopáticos'
+    hormon = 'Hormônios'
+    imunomod = 'Imunomoduladores'
+    imunosup = 'Imunossupressores'
+    indutor = 'Indutores do Sono'
+    A06 = 'Laxativos'
+    manuart = 'Manutenção das articulações'
+    mucol = 'Mucolíticos'
+    neurole = 'Neurolepticos'
+    plaquet = 'Plaquetarios'
+    possos = 'Problemas ósseos'
+    psico = 'Psicoanalépticos'
+    relax = 'Relaxantes musculares'
+    A14 = "anabolizantes"
+    repel = 'Repelentes'
+    sedat = 'Sedativos'
+    sedat_t = 'Sedativos da Tosse'
+    soliso = 'Soluções Isomóticas Salinas Simples'
+    vasocon = 'Vasoconstritores'
+    vasod = 'Vasodilatadores'
+    A11 = 'Vitaminas'
+    A12A = 'Calcio'
+    A12C = 'Outros suplementos minerais'
 
     @classmethod
     def list_names(cls):
@@ -201,7 +201,7 @@ class ClasseTerapeutica(Enum):
 
 
 class UnidadeDosagem(Enum):
-    unidade = 'Escolha a unidade da dosagem'
+    unidade = 'Unidade dosagem:'
     litro = 'L'
     mililitro = 'mL'
     grama = 'g'
@@ -228,7 +228,7 @@ class UnidadeDosagem(Enum):
 
 
 class Embalagem(Enum):
-    apresentacao = "Escolha a apresentação"
+    apresentacao = "Apresentação:"
     ampola = "AMPOLA"
     aplicador_preenc = "APLICADOR PREENCHIDO"
     bisnaga = "BISNAGA"

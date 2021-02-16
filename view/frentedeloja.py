@@ -1,21 +1,16 @@
 import os
 
 from kivy.lang import Builder
-from kivy.metrics import dp
 from kivy.properties import ObjectProperty, StringProperty
 from kivy.uix.boxlayout import BoxLayout
 from kivy.uix.popup import Popup
 from kivy.uix.relativelayout import RelativeLayout
-from kivy.uix.screenmanager import ScreenManager
 from kivymd.uix.button import MDRaisedButton
-from kivymd.uix.datatables import MDDataTable
-from kivymd.uix.label import MDLabel
 from kivymd.uix.menu import MDDropdownMenu
 from kivymd.uix.screen import MDScreen
 from kivymd.uix.textfield import MDTextField
 
 from infrastructure.observer import Observer
-from models.frentedeloja import FrentedeLoja
 
 Builder.load_file(os.path.join(os.path.dirname(__file__), 'frentedeloja.kv'))
 
@@ -42,7 +37,8 @@ class FrentedeLojaView(MDScreen, Observer):
         self.add_screens(self.scr_manager)
 
     def add_screens(self, screenmanager):
-         pass#screenmanager.add_widget()
+        pass
+        # screenmanager.add_widget()
 
     def create_dropdown_menu(self, menu_items):
         menu = MDDropdownMenu(

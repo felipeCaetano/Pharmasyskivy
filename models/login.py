@@ -55,7 +55,7 @@ class Login(Base):
         session.close()
         return record
 
-    def find_record(self, text, nome=""):
+    def find_record(self, text):
         """
         encontra um registro especifico da tabela usando o keyword
         :param text:
@@ -74,6 +74,8 @@ class Login(Base):
             return False, 'NOT_REGISTERED'
 
     def validar_entrada(self, entrada):
+        error = False
+        msg = ''
         if not entrada:
             error = True
             msg = 'Campo Obrigatório'

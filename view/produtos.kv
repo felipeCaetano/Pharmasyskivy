@@ -1,0 +1,262 @@
+#:import choicegrid view.choicegrid
+
+<ProdutosView>
+
+    id: tela_produtos
+    name: "produtos"
+    text: title
+
+    MDBoxLayout:
+        orientation: 'vertical'
+        padding: 0, 0, 0, 20
+
+        BarraVoltar:
+            id: title
+            client: tela_produtos
+            title: 'Cadastrar Produtos'
+            right_action_items: [['arrow-left', lambda x: root.barra_voltar(), 'Voltar']]
+            size_hint_y: None
+            height: dp(60)
+
+        MDGridLayout:
+            cols: 2
+            rows: 7
+            orientation: 'tb-lr'
+            spacing: dp(60), dp(20)
+            padding: 40, 30, 50, 40
+            col_default_width: dp(300)
+
+            Field:
+                id: txt_codigo
+                adaptive_size: True
+                hint_text: 'Código'
+                tamanho: '310dp'
+                on_text_validate: root.text_validator(self, self.text)
+
+            Field:
+                id: txt_nome
+                hint_text: 'Nome'
+                tamanho: '310dp'
+
+            MDBoxLayout:
+                orientation: 'vertical'
+                #rows: 2
+                adaptive_size: True
+                spacing: '10dp'
+                MDLabel:
+                    id: lbl_descricao
+                    color: 59/255, 67/255, 80/255, 1
+                    text: 'Descrição:'
+
+                MDTextFieldRect:
+                    id: txt_descricao
+                    size_hint: None, None
+                    pos_hint: {"x": .01, "center_y": .99}
+                    width: '310dp'
+                    height: '80dp'
+                    max_height: '230dp'
+                    mode: "rectangle"
+                    multiline: True
+
+            Field:
+                id: txt_lab
+                hint_text: 'Fabricante'
+                tamanho: "310dp"
+
+            Field:
+                id: txt_register
+                hint_text: 'Registro MS'
+                tamanho: "310dp"
+
+            MDBoxLayout:
+                adaptive_height: True
+                orientation: 'horizontal'
+                spacing: dp(20)
+
+                Field:
+                    id: txt_dosagem
+                    hint_text: 'Volume/Peso'
+                    tamanho: '130dp'
+
+                MDBoxLayout:
+                    orientation: 'vertical'
+                    adaptive_size: False
+                    MDLabel:
+                        id: label_unidade
+                    MDDropDownItem:
+                        id: drop_unidade
+                        pos_hint: {'center_x': .5, 'center_y': .5}
+                        text: 'Unidade'
+                        name: 'Unidade'
+                        on_release: root.menu_unidade.open()
+            MDLabel:
+                text: ''
+            MDGridLayout:
+                cols: 2
+                MDBoxLayout:
+                    orientation: 'vertical'
+                    adaptive_size: False
+                    MDLabel:
+                        id: lbl_validade
+                    MDDropDownItem:
+                        id: drop_validade
+                        text: "Validade"
+                        on_release: root.show_date_picker()
+                MDBoxLayout:
+                    orientation: 'vertical'
+                    adaptive_size: False
+                    MDLabel:
+                        id: _label
+                    MDDropDownItem:
+                        id: drop_secao
+                        pos_hint: {'center_x': .5, 'center_y': .5}
+                        text: 'Seção'
+                        name: 'Seção'
+                        on_release: root.menu_secao.open()
+
+            MDBoxLayout:
+                adaptive_height: True
+                spacing: dp(50)
+
+                Field:
+                    id: txt_quantidade
+                    hint_text: 'Quantidade'
+
+                MDBoxLayout:
+                    orientation: 'vertical'
+                    adaptive_size: False
+                    MDLabel:
+                        id: _label
+
+                    MDDropDownItem:
+                        id: drop_embalagem
+                        pos_hint: {'center_x': .5, 'center_y': .5}
+                        text: 'Embalagem'
+                        name: 'Embalagem'
+                        on_release: root.menu_embalagem.open()
+
+            MDBoxLayout:
+                orientation: 'vertical'
+                adaptive_size: True
+                size_hint_x: None
+                width: '310dp'
+                MDLabel:
+                    id: _label
+                    size_hint: None, None
+                    height: '20dp'
+                    width: '310dp'
+                    pos_hint: {'center_x': .5, 'center_y': .1}
+                MDDropDownItem:
+                    id: drop_forma
+                    pos_hint: {'center_x': .5, 'center_y': .1}
+                    text: 'Apresentação'
+                    name: 'Apresentação'
+
+                    on_release: root.menu_forma.open()
+
+            Field:
+                id: txt_fornecedor
+                hint_text: 'Fornecedor'
+                tamanho: '310dp'
+
+            MDBoxLayout:
+                adaptive_height: True
+                spacing: dp(50)
+
+                Field:
+                    id: txt_estoque
+                    hint_text: 'Estoque'
+                    tamanho: '130dp'
+
+                Field:
+                    id: txt_lote
+                    hint_text: 'Lote'
+                    tamanho: '130dp'
+
+            MDBoxLayout:
+                adaptive_height: True
+                spacing: dp(50)
+
+                Field:
+                    id: txt_compra
+                    hint_text: 'P. Compra'
+                    tamanho: '130dp'
+
+                Field:
+                    id: txt_preco
+                    hint_text: 'Preço'
+                    tamanho: '130dp'
+
+        BoxLayout:
+            size_hint: .5, .5
+            pos_hint:{'right': .9625, 'center_y': .5}
+            padding: 20,20,20,20
+
+            AnchorLayout:
+
+                size_hint: .2,.2
+                anchor_x:'right'
+                anchor_y:'bottom'
+
+                PharmaSysRsdBtn:
+                    id: cancelar
+                    text: 'Cancelar'
+                    md_bg_color: 1, .2, .2, 1
+                    on_release: root.on_cancel(root)
+
+            AnchorLayout:
+                anchor_x:'right'
+                anchor_y:'bottom'
+                size_hint: .2, .2
+
+                PharmaSysRsdBtn:
+                    id: cadastrar
+                    text: 'Cadastrar'
+                    md_bg_color: .2, .75, .2, 1
+                    on_release: root.on_save()
+
+<Field>:
+    adaptive_size: True
+    orientation: 'vertical'
+    spacing: dp(12)
+    hint_text: input_text.hint_text
+    tamanho: input_text.width
+    focus: input_text.focus
+    text: input_text.text
+    text_validate: input_text.on_text_validate
+
+    MDLabel:
+        id: validade_label
+        text: input_text.hint_text + ':'
+        color: 59/255, 67/255, 80/255, 1
+    MDTextFieldRect:
+        color_mode: 'custom'
+        multiline: False
+        write_tab: False
+        helper_text_mode: "on_error"
+        hint_text_color: .1,.09,.1,1
+        line_color_normal: self.theme_cls.opposite_bg_normal
+        line_color_focus:
+            # This is the color used by the textfield
+            self.theme_cls.opposite_bg_normal
+        required: True
+        id: input_text
+        size_hint: None, None
+        height: '30dp'
+        width: root.tamanho
+        hint_text: root.hint_text
+        text: root.text
+        on_text_validate: root.on_text_validate
+
+<PharmaSysRsdBtn>:
+    text: self.ids.mdbutton.text
+    md_bg_color: self.ids.mdbutton.md_bg_color
+    MDRaisedButton:
+        id: mdbutton
+        elevation_normal: 2
+        oposite_colors: True
+        text: root.text
+        md_bg_color: root.md_bg_color
+        size_hint: None, None
+        width: dp(150) + (self.ids.lbl_txt.texture_size[0] - self.ids.lbl_txt.texture_size[0])
+        height: dp(50)

@@ -1,8 +1,6 @@
-from kivy.metrics import dp
 from kivymd.uix.datatables import MDDataTable
 from kivymd.uix.label import MDLabel
 
-from controllers.clientes import ClientesController
 from view.frentedeloja import FrentedeLojaView
 
 
@@ -28,7 +26,7 @@ class FrentedeLojaController:
         row_data_fake = []
         if response:
             row_data = tuple([x.get_data() for x in list(content)])
-            for i in row_data[0]:
+            for _ in row_data[0]:
                 row_data_fake.append('')
             row_data_fake = tuple(row_data_fake)
 
@@ -51,11 +49,13 @@ class FrentedeLojaController:
         self.view.ids.table.add_widget(data_table)
 
     def on_save(self, instance):
-        for id in instance.ids:
-            if 'txt_' in id:
-                print(id, instance.ids[id], instance.ids[id].valor)
-            elif 'drop_' in id:
-                print(id, instance.ids[id], instance.ids[id].text)
+        for component in instance.ids:
+            if 'txt_' in component:
+                print(component, instance.ids[component],
+                      instance.ids[component].valor)
+            elif 'drop_' in component:
+                print(component, instance.ids[component],
+                      instance.ids[component].text)
         self.model.add()
 
     def on_cancel(self):

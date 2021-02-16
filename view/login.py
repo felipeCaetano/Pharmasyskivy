@@ -1,6 +1,5 @@
 import os
 
-from kivy.animation import Animation
 from kivy.lang import Builder
 from kivy.properties import StringProperty, ObjectProperty
 
@@ -11,6 +10,7 @@ from kivy.uix.relativelayout import RelativeLayout
 from infrastructure.observer import Observer
 
 Builder.load_file(os.path.join(os.path.dirname(__file__), "login.kv"))
+
 
 class ClickableTextFieldRound(RelativeLayout):
     text = StringProperty()

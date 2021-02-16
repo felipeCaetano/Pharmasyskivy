@@ -18,3 +18,4 @@ class LoginController:
 
     def text_validator(self, text):
         error, msg = self.model.validar_entrada(text)
+        return error, msg

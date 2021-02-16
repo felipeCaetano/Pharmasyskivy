@@ -10,11 +10,13 @@ class ClientesController:
         return self.view
 
     def on_save(self, instance):
-        for id in instance.ids:
-            if 'txt_' in id:
-                print(id, instance.ids[id], instance.ids[id].valor)
-            elif 'drop_' in id:
-                print(id, instance.ids[id], instance.ids[id].text)
+        for components in instance.ids:
+            if 'txt_' in components:
+                print(components, instance.ids[components],
+                      instance.ids[components].valor)
+            elif 'drop_' in components:
+                print(components, instance.ids[components],
+                      instance.ids[components].text)
         self.model.add()
 
     def on_cancel(self):

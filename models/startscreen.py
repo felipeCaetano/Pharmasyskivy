@@ -9,6 +9,7 @@ class StartScreen:
     - Modelo de negócios
     The Model class implements the Design Partner Observer methods.
     """
+
     def __init__(self):
         self.login = Login()
         self.frenteloja = FrentedeLoja()

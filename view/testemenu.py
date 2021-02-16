@@ -16,7 +16,7 @@ KV = '''
         text: root.text
         icon_left: 'magnify'
         padding: 20, 20, 20, 20
-            # self._lbl_icon_left.texture_size[1] + dp(15) if self.icon_left else dp(25)
+        #self._lbl_icon_left.texture_size[1] + dp(15) if self.icon_left else dp(25)
      
     MDIconButton:
         id: button
