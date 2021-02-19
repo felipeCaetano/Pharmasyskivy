@@ -1,5 +1,8 @@
+import re
+
 from sqlalchemy import Column, Integer, String, Float, or_
-from sqlalchemy.orm.exc import NoResultFound
+from sqlalchemy.exc import IntegrityError
+from sqlalchemy.orm.exc import NoResultFound, UnmappedInstanceError
 
 from infrastructure.core import *
 
@@ -35,12 +38,49 @@ class Produto(Base):
             error = True
             msg = 'Campo Obrigatório'
         elif text.isnumeric() or text.isspace():
-            msg = "formato inválido"
+            msg = "Formato Inválido"
             error = True
         elif text.isalpha():
             msg = 'Sucesso'
             error = False
+        else:
+            msg = 'Sucesso'
+            error = False
         return error, msg
+
+    def validate_number(self, text):
+        if not text:
+            error = True
+            msg = 'Campo Obrigatório'
+        elif text.isalpha() or text.isspace():
+            msg = "Formato Inválido"
+            error = True
+        elif text.isdigit():
+            msg = 'Sucesso'
+            error = False
+        else:
+            msg = "Formato Inválido"
+            error = True
+        return error, msg
+
+    def validate_price(self, price):
+        error, msg, s = '', '', ''
+        if not price:
+            error = True
+            msg = 'Campo Obrigatório'
+        elif price.isalpha() or price.isspace():
+            msg = "Formato Inválido"
+            error = True
+        elif price.isdigit() and float(price) > 0:
+            msg = 'Sucesso'
+            error = False
+        pat = re.compile('[^0-9]')
+        if '.' in price:
+            s = re.sub(pat, '.', price)
+        else:
+            s = '.'.join(
+                [re.sub(pat, '.', s) for s in price.split('.', 1)])
+        return error, msg, s
 
     def add_observer(self, observer):
         self._observers.append(observer)
@@ -52,9 +92,22 @@ class Produto(Base):
         for x in self._observers:
             x.model_is_changed()
 
-    def add(self):
-        print('salvei no banco')
-        self.notify_all()
+    def add(self, fields):
+        session = conect_db()
+        session.add(fields)
+        try:
+            session.commit()
+            session.close()
+            self.notify_all()
+            return True, 'Success'
+        except UnmappedInstanceError:
+            #return return_error(session, REGISTER_ERROR)
+            print('UnmappedInstanceError')
+        except IntegrityError:
+            #return return_error(session, REGISTER_ERROR)
+            print('IntegrityError')
+        except Exception as e:
+            print(e)
 
     def find_byid(self, idnum):
         session = conect_db()

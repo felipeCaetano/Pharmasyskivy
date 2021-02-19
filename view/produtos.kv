@@ -1,6 +1,4 @@
-#:import choicegrid view.choicegrid
-
-<ProdutosView>
+<ProdutosView>:
 
     id: tela_produtos
     name: "produtos"
@@ -26,57 +24,47 @@
             padding: 40, 30, 50, 40
             col_default_width: dp(300)
 
-            Field:
-                id: txt_codigo
-                adaptive_size: True
+            CampoTexto:
+                id: campo_codigo
                 hint_text: 'Código'
-                tamanho: '310dp'
-                on_text_validate: root.text_validator(self, self.text)
+                on_text_validate:
+                    root.number_validator(self, self.text)
 
-            Field:
-                id: txt_nome
+            CampoTexto:
+                id: campo_nome
                 hint_text: 'Nome'
-                tamanho: '310dp'
+                on_text_validate:
+                    root.text_validator(self, self.text)
 
-            MDBoxLayout:
-                orientation: 'vertical'
-                #rows: 2
-                adaptive_size: True
-                spacing: '10dp'
-                MDLabel:
-                    id: lbl_descricao
-                    color: 59/255, 67/255, 80/255, 1
-                    text: 'Descrição:'
+            CampoTexto:
+                id: campo_descricao
+                hint_text: 'Descrição'
+                multiline: True
 
-                MDTextFieldRect:
-                    id: txt_descricao
-                    size_hint: None, None
-                    pos_hint: {"x": .01, "center_y": .99}
-                    width: '310dp'
-                    height: '80dp'
-                    max_height: '230dp'
-                    mode: "rectangle"
-                    multiline: True
-
-            Field:
-                id: txt_lab
+            CampoTexto:
+                id: campo_fab
                 hint_text: 'Fabricante'
-                tamanho: "310dp"
+                on_text_validate:
+                    root.text_validator(self, self.text)
 
-            Field:
-                id: txt_register
-                hint_text: 'Registro MS'
-                tamanho: "310dp"
+            CampoTexto:
+                id: campo_registro
+                hint_text: 'Registro'
+                required: False
+                on_text_validate:
+                    root.number_validator(self, self.text)
 
             MDBoxLayout:
                 adaptive_height: True
                 orientation: 'horizontal'
                 spacing: dp(20)
 
-                Field:
-                    id: txt_dosagem
+                CampoTexto:
+                    id: campo_peso
                     hint_text: 'Volume/Peso'
-                    tamanho: '130dp'
+                    width: '130dp'
+                    on_text_validate:
+                        root.number_validator(self, self.text)
 
                 MDBoxLayout:
                     orientation: 'vertical'
@@ -89,8 +77,7 @@
                         text: 'Unidade'
                         name: 'Unidade'
                         on_release: root.menu_unidade.open()
-            MDLabel:
-                text: ''
+            Widget: #fecha a diagramação da coluna
             MDGridLayout:
                 cols: 2
                 MDBoxLayout:
@@ -99,28 +86,40 @@
                     MDLabel:
                         id: lbl_validade
                     MDDropDownItem:
+                        canvas.before:
+                            Color:
+                                rgba: .1,.1,.1,.1
+                            Rectangle:
+                                pos: self.pos
+                                size: self.width, self.height+sp(15)
+
                         id: drop_validade
                         text: "Validade"
+                        name: "Validade"
                         on_release: root.show_date_picker()
+
                 MDBoxLayout:
                     orientation: 'vertical'
                     adaptive_size: False
                     MDLabel:
                         id: _label
                     MDDropDownItem:
-                        id: drop_secao
+                        id: drop_tipo
                         pos_hint: {'center_x': .5, 'center_y': .5}
-                        text: 'Seção'
-                        name: 'Seção'
-                        on_release: root.menu_secao.open()
+                        text: 'Tipo'
+                        name: 'Tipo'
+                        on_release: root.menu_tipo.open()
 
             MDBoxLayout:
                 adaptive_height: True
                 spacing: dp(50)
 
-                Field:
-                    id: txt_quantidade
+                CampoTexto:
+                    id: campo_quantidade
                     hint_text: 'Quantidade'
+                    width: '130dp'
+                    on_text_validate:
+                        root.number_validator(self, self.text)
 
                 MDBoxLayout:
                     orientation: 'vertical'
@@ -151,41 +150,42 @@
                     pos_hint: {'center_x': .5, 'center_y': .1}
                     text: 'Apresentação'
                     name: 'Apresentação'
-
                     on_release: root.menu_forma.open()
 
-            Field:
-                id: txt_fornecedor
+            CampoTexto:
+                id: campo_fornecedor
                 hint_text: 'Fornecedor'
-                tamanho: '310dp'
+                #tamanho: '310dp'
 
             MDBoxLayout:
                 adaptive_height: True
                 spacing: dp(50)
 
-                Field:
-                    id: txt_estoque
+                CampoTexto:
+                    id: campo_estoque
                     hint_text: 'Estoque'
-                    tamanho: '130dp'
+                    width: '130dp'
 
-                Field:
-                    id: txt_lote
+                CampoTexto:
+                    id: campo_lote
                     hint_text: 'Lote'
-                    tamanho: '130dp'
+                    width: '130dp'
 
             MDBoxLayout:
                 adaptive_height: True
                 spacing: dp(50)
 
-                Field:
-                    id: txt_compra
+                CampoTexto:
+                    id: campo_compra
                     hint_text: 'P. Compra'
-                    tamanho: '130dp'
+                    width: '130dp'
+                    input_filter: 'float'
 
-                Field:
-                    id: txt_preco
+                CampoTexto:
+                    id: campo_preco
                     hint_text: 'Preço'
-                    tamanho: '130dp'
+                    width: '130dp'
+                    input_filter: 'float'
 
         BoxLayout:
             size_hint: .5, .5
@@ -200,9 +200,9 @@
 
                 PharmaSysRsdBtn:
                     id: cancelar
-                    text: 'Cancelar'
+                    text: 'Limpar'
                     md_bg_color: 1, .2, .2, 1
-                    on_release: root.on_cancel(root)
+                    on_release: root.on_clear(root)
 
             AnchorLayout:
                 anchor_x:'right'
@@ -213,40 +213,7 @@
                     id: cadastrar
                     text: 'Cadastrar'
                     md_bg_color: .2, .75, .2, 1
-                    on_release: root.on_save()
-
-<Field>:
-    adaptive_size: True
-    orientation: 'vertical'
-    spacing: dp(12)
-    hint_text: input_text.hint_text
-    tamanho: input_text.width
-    focus: input_text.focus
-    text: input_text.text
-    text_validate: input_text.on_text_validate
-
-    MDLabel:
-        id: validade_label
-        text: input_text.hint_text + ':'
-        color: 59/255, 67/255, 80/255, 1
-    MDTextFieldRect:
-        color_mode: 'custom'
-        multiline: False
-        write_tab: False
-        helper_text_mode: "on_error"
-        hint_text_color: .1,.09,.1,1
-        line_color_normal: self.theme_cls.opposite_bg_normal
-        line_color_focus:
-            # This is the color used by the textfield
-            self.theme_cls.opposite_bg_normal
-        required: True
-        id: input_text
-        size_hint: None, None
-        height: '30dp'
-        width: root.tamanho
-        hint_text: root.hint_text
-        text: root.text
-        on_text_validate: root.on_text_validate
+                    on_release: root.on_cadastrar()
 
 <PharmaSysRsdBtn>:
     text: self.ids.mdbutton.text
@@ -260,3 +227,19 @@
         size_hint: None, None
         width: dp(150) + (self.ids.lbl_txt.texture_size[0] - self.ids.lbl_txt.texture_size[0])
         height: dp(50)
+
+<CampoTexto@MDTextField>:
+    padding: 0,10,10,50
+    mode:'rectangle'
+    color_mode: 'custom'
+    helper_text_mode: 'on_error'
+    text_color: .15,.15,.95,.5
+    current_hint_text_color: .15,.15,.15,.81
+    size_hint: None, None
+    multiline: False
+    write_tab: False
+    width: '310dp'
+    height: self.height
+    max_height: '80dp'
+
+
